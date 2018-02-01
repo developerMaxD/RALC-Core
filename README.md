@@ -1,2 +1,2 @@
 # RALC-Core
-'React' auxiliary library classes
+Core of 'React' auxiliary library classes.
