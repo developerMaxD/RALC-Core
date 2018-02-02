@@ -1,0 +1,66 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "block-spacing": 2,
+    "comma-dangle": 0,
+    "comma-spacing": 2,
+    "curly": 2,
+    "eol-last": 2,
+    "eqeqeq": 2,
+    "indent": [2, 2, {
+      "SwitchCase": 1,
+      "VariableDeclarator": 2
+    }],
+    "multiline-ternary": 0,
+    "no-alert": 2,
+    "no-console": 2,
+    "no-debugger": 2,
+    "no-eval": 2,
+    "no-extra-boolean-cast": 0,
+    "no-implicit-globals": 2,
+    "no-irregular-whitespace": 2,
+    "no-lone-blocks": 0,
+    "no-nested-ternary": 0,
+    "no-trailing-spaces": 2,
+    "no-underscore-dangle": 0,
+    "no-unneeded-ternary": 2,
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_$" }],
+    "no-var": 2,
+    "prefer-arrow-callback": 2,
+    "prefer-const": 2,
+    "prefer-destructuring": 2,
+    "prefer-numeric-literals": 2,
+    "prefer-rest-params": 2,
+    "prefer-spread": 2,
+    "prefer-stateless-function": 0,
+    "prefer-template": 2,
+    "quotes": [2, "single", { "avoidEscape": true }],
+    "quote-props": [2, "as-needed", { "keywords": true }],
+    "require-render-return": 0,
+    "semi": [2, "always"],
+    "semi-spacing": 2,
+    "sort-prop-types": 0,
+    "no-lonely-if": 2
+  },
+  "globals": {
+    "require": true
+  }
+}
