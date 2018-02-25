@@ -21,6 +21,10 @@ export default class Assert {
     return (typeof value === 'number' || value instanceof Number) && !isNaN(value);
   }
 
+  static isInteger(value) {
+    return Math.floor(value) === value;
+  }
+
   static isBool(value) {
     return typeof value === 'boolean';
   }
@@ -98,7 +102,7 @@ export default class Assert {
   }
 
   static isIntegerValue(value) {
-    return Math.floor(value) === value || (Assert.isString(value) && /^[-+]?[0-9]+$/.test(value));
+    return Assert.isInteger(value) || (Assert.isString(value) && /^[-+]?[0-9]+$/.test(value));
   }
 
   static isAlphaValue(value) {
@@ -106,7 +110,7 @@ export default class Assert {
   }
 
   static isAlphaNumeralValue(value) {
-    return Assert.isString(value) && /^[a-zA-Z0-9-\.\s\r\n]*$/.test(value);
+    return Assert.isString(value) && /^[a-zA-Z0-9-.\s\r\n]+$/.test(value);
   }
 
   static isDateValue(value) {

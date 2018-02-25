@@ -165,6 +165,9 @@ describe('Assert Test', () => {
 
   it('should assert is Number',  () => {
     assert.ok(Assert.isNumber(0));
+    assert.ok(Assert.isNumber(0.75));
+    assert.ok(Assert.isNumber(120));
+    assert.ok(Assert.isNumber(-30));
     assert.ok(Assert.isNumber(new Number()));
   });
 
@@ -181,6 +184,38 @@ describe('Assert Test', () => {
     assert.ok(!Assert.isNumber(new Object()));
     assert.ok(!Assert.isNumber(() => { } ));
     assert.ok(!Assert.isNumber(new Function()));
+  });
+
+  it('should assert is Integer',  () => {
+    assert.ok(Assert.isInteger(0));
+    assert.ok(Assert.isInteger(-13));
+    assert.ok(Assert.isInteger(100));
+
+    assert.ok(!Assert.isInteger(new Number()));
+    assert.ok(!Assert.isInteger(null));
+    assert.ok(!Assert.isInteger(undefined));
+    assert.ok(!Assert.isInteger(true));
+    assert.ok(!Assert.isInteger(false));
+    assert.ok(!Assert.isInteger([]));
+    assert.ok(!Assert.isInteger(new Array()));
+    assert.ok(!Assert.isInteger(''));
+    assert.ok(!Assert.isInteger(new String()));
+    assert.ok(!Assert.isInteger({}));
+    assert.ok(!Assert.isInteger(new Object()));
+    assert.ok(!Assert.isInteger(() => { } ));
+    assert.ok(!Assert.isInteger(new Function()));
+    assert.ok(!Assert.isInteger('0'));
+    assert.ok(!Assert.isInteger('-7'));
+    assert.ok(!Assert.isInteger('50'));
+    assert.ok(!Assert.isInteger(0.1));
+    assert.ok(!Assert.isInteger(12.5));
+    assert.ok(!Assert.isInteger(-22.6));
+    assert.ok(!Assert.isInteger('0.5'));
+    assert.ok(!Assert.isInteger('21.3'));
+    assert.ok(!Assert.isInteger('-33.67'));
+    assert.ok(!Assert.isInteger('0.x'));
+    assert.ok(!Assert.isInteger('a'));
+    assert.ok(!Assert.isInteger('25.1.7'));
   });
 
   it('should assert is Function',  () => {
@@ -336,17 +371,176 @@ describe('Assert Test', () => {
     assert.ok(Assert.isNullOrEmpty());
     assert.ok(Assert.isNullOrEmpty(undefined));
     assert.ok(Assert.isNullOrEmpty([]));
+    assert.ok(Assert.isNullOrEmpty(new Array()));
     assert.ok(Assert.isNullOrEmpty({}));
 
     assert.ok(!Assert.isNullOrEmpty(new function() { }));
     assert.ok(!Assert.isNullOrEmpty(true));
     assert.ok(!Assert.isNullOrEmpty(false));
-    assert.ok(!Assert.isNullOrEmpty(''));
     assert.ok(!Assert.isNullOrEmpty(new String()));
     assert.ok(!Assert.isNullOrEmpty(0));
     assert.ok(!Assert.isNullOrEmpty(new Number()));
-    assert.ok(!Assert.isNullOrEmpty(new Array()));
     assert.ok(!Assert.isNullOrEmpty(() => { } ));
     assert.ok(!Assert.isNullOrEmpty(new Function()));
+  });
+
+  it('should assert is Number value',  () => {
+    assert.ok(Assert.isNumberValue(0));
+    assert.ok(Assert.isNumberValue(new Number()));
+    assert.ok(Assert.isNumberValue(0.1));
+    assert.ok(Assert.isNumberValue(12.5));
+    assert.ok(Assert.isNumberValue(-13));
+    assert.ok(Assert.isNumberValue(-22.6));
+    assert.ok(Assert.isNumberValue('0'));
+    assert.ok(Assert.isNumberValue('0.5'));
+    assert.ok(Assert.isNumberValue('21.3'));
+    assert.ok(Assert.isNumberValue('-7'));
+    assert.ok(Assert.isNumberValue('-33.67'));
+
+    assert.ok(!Assert.isNumberValue(null));
+    assert.ok(!Assert.isNumberValue(undefined));
+    assert.ok(!Assert.isNumberValue(true));
+    assert.ok(!Assert.isNumberValue(false));
+    assert.ok(!Assert.isNumberValue([]));
+    assert.ok(!Assert.isNumberValue(new Array()));
+    assert.ok(!Assert.isNumberValue(''));
+    assert.ok(!Assert.isNumberValue(new String()));
+    assert.ok(!Assert.isNumberValue({}));
+    assert.ok(!Assert.isNumberValue(new Object()));
+    assert.ok(!Assert.isNumberValue(() => { } ));
+    assert.ok(!Assert.isNumberValue(new Function()));
+    assert.ok(!Assert.isNumberValue('0.x'));
+    assert.ok(!Assert.isNumberValue('a'));
+    assert.ok(!Assert.isNumberValue('25.1.7'));
+  });
+
+  it('should assert is Integer value',  () => {
+    assert.ok(Assert.isIntegerValue(0));
+    assert.ok(Assert.isIntegerValue(-13));
+    assert.ok(Assert.isIntegerValue('0'));
+    assert.ok(Assert.isIntegerValue('-7'));
+
+    assert.ok(!Assert.isIntegerValue(null));
+    assert.ok(!Assert.isIntegerValue(undefined));
+    assert.ok(!Assert.isIntegerValue(true));
+    assert.ok(!Assert.isIntegerValue(false));
+    assert.ok(!Assert.isIntegerValue([]));
+    assert.ok(!Assert.isIntegerValue(new Number()));
+    assert.ok(!Assert.isIntegerValue(new Number(3)));
+    assert.ok(!Assert.isIntegerValue(new Array()));
+    assert.ok(!Assert.isIntegerValue(''));
+    assert.ok(!Assert.isIntegerValue(new String()));
+    assert.ok(!Assert.isIntegerValue({}));
+    assert.ok(!Assert.isIntegerValue(new Object()));
+    assert.ok(!Assert.isIntegerValue(() => { } ));
+    assert.ok(!Assert.isIntegerValue(new Function()));
+    assert.ok(!Assert.isIntegerValue(0.1));
+    assert.ok(!Assert.isIntegerValue(12.5));
+    assert.ok(!Assert.isIntegerValue(-22.6));
+    assert.ok(!Assert.isIntegerValue('0.5'));
+    assert.ok(!Assert.isIntegerValue('21.3'));
+    assert.ok(!Assert.isIntegerValue('-33.67'));
+    assert.ok(!Assert.isIntegerValue('0.x'));
+    assert.ok(!Assert.isIntegerValue('a'));
+    assert.ok(!Assert.isIntegerValue('25.1.7'));
+  });
+
+  it('should assert is Alpha value',  () => {
+    assert.ok(Assert.isAlphaValue('a'));
+    assert.ok(Assert.isAlphaValue('This is a test value'));
+
+    assert.ok(!Assert.isAlphaValue(0));
+    assert.ok(!Assert.isAlphaValue(new Number()));
+    assert.ok(!Assert.isAlphaValue(-13));
+    assert.ok(!Assert.isAlphaValue(null));
+    assert.ok(!Assert.isAlphaValue(undefined));
+    assert.ok(!Assert.isAlphaValue(true));
+    assert.ok(!Assert.isAlphaValue(false));
+    assert.ok(!Assert.isAlphaValue([]));
+    assert.ok(!Assert.isAlphaValue(new Array()));
+    assert.ok(!Assert.isAlphaValue(''));
+    assert.ok(!Assert.isAlphaValue(new String()));
+    assert.ok(!Assert.isAlphaValue({}));
+    assert.ok(!Assert.isAlphaValue(new Object()));
+    assert.ok(!Assert.isAlphaValue(() => { } ));
+    assert.ok(!Assert.isAlphaValue(new Function()));
+    assert.ok(!Assert.isAlphaValue(0.1));
+    assert.ok(!Assert.isAlphaValue(12.5));
+    assert.ok(!Assert.isAlphaValue(-22.6));
+    assert.ok(!Assert.isAlphaValue('0'));
+    assert.ok(!Assert.isAlphaValue('0.5'));
+    assert.ok(!Assert.isAlphaValue('21.3'));
+    assert.ok(!Assert.isAlphaValue('-33.67'));
+    assert.ok(!Assert.isAlphaValue('-7'));
+    assert.ok(!Assert.isAlphaValue('0.x'));
+    assert.ok(!Assert.isAlphaValue('A test-value.'));
+    assert.ok(!Assert.isAlphaValue('Alpha Number test value 35.6'));
+  });
+
+  it('should assert is Alpha Numberal value',  () => {
+    assert.ok(Assert.isAlphaNumeralValue('a'));
+    assert.ok(Assert.isAlphaNumeralValue('This is a test value'));
+    assert.ok(Assert.isAlphaNumeralValue('Alpha Number test value 35.6'));
+    assert.ok(Assert.isAlphaNumeralValue('0'));
+    assert.ok(Assert.isAlphaNumeralValue('0.5'));
+    assert.ok(Assert.isAlphaNumeralValue('21.3'));
+    assert.ok(Assert.isAlphaNumeralValue('-33.67'));
+    assert.ok(Assert.isAlphaNumeralValue('-7'));
+    assert.ok(Assert.isAlphaNumeralValue('0.x'));
+    assert.ok(Assert.isAlphaNumeralValue('a'));
+    assert.ok(Assert.isAlphaNumeralValue('A test-value.'));
+
+    assert.ok(!Assert.isAlphaNumeralValue(0));
+    assert.ok(!Assert.isAlphaNumeralValue(new Number()));
+    assert.ok(!Assert.isAlphaNumeralValue(-13));
+    assert.ok(!Assert.isAlphaNumeralValue(null));
+    assert.ok(!Assert.isAlphaNumeralValue(undefined));
+    assert.ok(!Assert.isAlphaNumeralValue(true));
+    assert.ok(!Assert.isAlphaNumeralValue(false));
+    assert.ok(!Assert.isAlphaNumeralValue([]));
+    assert.ok(!Assert.isAlphaNumeralValue(new Array()));
+    assert.ok(!Assert.isAlphaNumeralValue(''));
+    assert.ok(!Assert.isAlphaNumeralValue(new String()));
+    assert.ok(!Assert.isAlphaNumeralValue({}));
+    assert.ok(!Assert.isAlphaNumeralValue(new Object()));
+    assert.ok(!Assert.isAlphaNumeralValue(() => { } ));
+    assert.ok(!Assert.isAlphaNumeralValue(new Function()));
+    assert.ok(!Assert.isAlphaNumeralValue(0.1));
+    assert.ok(!Assert.isAlphaNumeralValue(12.5));
+    assert.ok(!Assert.isAlphaNumeralValue(-22.6));
+  });
+
+  it('should assert is Date value',  () => {
+    assert.ok(Assert.isDateValue(new Date()));
+    assert.ok(Assert.isDateValue('2015/12/17'));
+    assert.ok(Assert.isDateValue('2015/12/17 00:12:21'));
+    assert.ok(Assert.isDateValue('2015/12/17 00:12:21 GMT'));
+    assert.ok(Assert.isDateValue('2015-12-17'));
+    assert.ok(Assert.isDateValue('2015-12-17 00:12:21'));
+    assert.ok(Assert.isDateValue('2015-12-17 00:12:21 GMT'));
+    assert.ok(Assert.isDateValue('12/17/2015'));
+    assert.ok(Assert.isDateValue('12-17-2015'));
+    assert.ok(Assert.isDateValue('17 Dec 2015'));
+    assert.ok(Assert.isDateValue('Tue, 06 Feb 2018 05:32:31 GMT'));
+
+    assert.ok(!Assert.isDateValue(null));
+    assert.ok(!Assert.isDateValue(undefined));
+    assert.ok(!Assert.isDateValue(true));
+    assert.ok(!Assert.isDateValue(false));
+    assert.ok(!Assert.isDateValue([]));
+    assert.ok(!Assert.isDateValue(new Array()));
+    assert.ok(!Assert.isDateValue(''));
+    assert.ok(!Assert.isDateValue(new String()));
+    assert.ok(!Assert.isDateValue(0));
+    assert.ok(!Assert.isDateValue(new Number()));
+    assert.ok(!Assert.isDateValue({}));
+    assert.ok(!Assert.isDateValue(new Object()));
+    assert.ok(!Assert.isDateValue(() => { } ));
+    assert.ok(!Assert.isDateValue(new Function()));
+    assert.ok(!Assert.isDateValue('2015/13/17'));
+    assert.ok(!Assert.isDateValue('2015/12/17 24:12:21'));
+    assert.ok(!Assert.isDateValue('20151217'));
+    assert.ok(!Assert.isDateValue('2015--17'));
+    assert.ok(!Assert.isDateValue('12\\17\\2015'));
   });
 });

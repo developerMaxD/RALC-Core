@@ -13,7 +13,7 @@
   },
   "scripts": {
     "test": "mocha -R spec --compilers js:babel-register --recursive ./test",
-    "test-file": "mocha -R spec --compilers js:babel-register",
+    "test-file": "mocha -R spec --compilers js:babel-register ./test/Compare/Compare.test.js",
     "test-cov": "(if exist .nyc_output (rmdir /s /q .nyc_output) ) && (if exist coverage (rmdir /s /q coverage) ) && cross-env NODE_ENV=test nyc npm test",
     "test-cov-d": "open -a 'Google Chrome' ./coverage/lcov-report/index.html",
     "test-cov-d-win": "chrome file:///C:/source/taylor/klic-ui/coverage/lcov-report/index.html",
