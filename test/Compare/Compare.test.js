@@ -104,7 +104,6 @@ describe('Compare Test', () => {
     const stringVar3 = '100';
     const stringVar4 = new String('100');
     const stringVar5 = new String('100');
-    const numberVar1 = 0;
     const numberVar2 = 20.5;
     const numberVar3 = 20.5;
     const numberVar4 = new Number(20.5);

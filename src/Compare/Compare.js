@@ -18,7 +18,7 @@ export default class Compare {
       return false;
     }
     if (isDeepEqual) {
-      if (!Compare.isEqual(firstArray.length, secondArray.length)) return false;
+      if (!Compare.isEqual(firstArray.length, secondArray.length)) { return false; }
       return firstArray.every((item, index) => {
         const compareTo = secondArray[index];
         return Compare.isIdenticalType(item, compareTo) &&
@@ -51,8 +51,8 @@ export default class Compare {
       });
     }
     if (isDeepEqual) {
-      if (!Compare.isEqualArray(Object.keys(filteredFirstObject), Object.keys(filteredSecondObject))) return false;
-      for (let key in filteredFirstObject) {
+      if (!Compare.isEqualArray(Object.keys(filteredFirstObject), Object.keys(filteredSecondObject))) { return false; }
+      for (const key in filteredFirstObject) {
         const firstItem = filteredFirstObject[key];
         const secondItem = filteredSecondObject[key];
         if (!Compare.isIdenticalType(firstItem, secondItem) ||
