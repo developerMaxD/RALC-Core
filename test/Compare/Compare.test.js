@@ -180,6 +180,8 @@ describe('Compare Test', () => {
     assert.ok(Compare.isEqualArray(arrayVar5, arrayVar6));
 
     assert.ok(!Compare.isEqualArray(nullVar1, nullVar2));
+    assert.ok(!Compare.isEqualArray(arrayVar1, arrayVar8));
+    assert.ok(!Compare.isEqualArray(arrayVar1, arrayVar2, false));
     assert.ok(!Compare.isEqualArray(undefinedVar1, undefinedVar2));
     assert.ok(!Compare.isEqualArray(boolVar1, boolVar3));
     assert.ok(!Compare.isEqualArray(boolVar2, boolVar4));
@@ -232,10 +234,17 @@ describe('Compare Test', () => {
     const literalObjectVar8 = { id: 1, name: 'x', list: ['2', '7A'] };
     const literalObjectVar9 = { id: 1, name: 'x', list: ['2', 'A7'] };
     const literalObjectVar0 = { id: 1, name: 'x', list: ['2', '7A'] };
+    const literalObjectVarEx = { id: 1, name: 'x', list: ['2', '7A'], extra: 'extra' };
+    const literalObjectVarN1 = { id: 0, name: 'x', list: ['2', '7A'], nest: { id: 33, mark: 'on' } };
+    const literalObjectVarN2 = { id: 0, name: 'x', list: ['2', '7A'], nest: { id: 33, mark: 'on' } };
+    const literalObjectVarN3 = { id: 0, name: 'x', list: ['2', '7A'], nest: { id: 33, mark: 'no' } };
 
     assert.ok(Compare.isEqualLiteralObject(literalObjectVar1, literalObjectVar2));
     assert.ok(Compare.isEqualLiteralObject(literalObjectVar3, literalObjectVar4));
     assert.ok(Compare.isEqualLiteralObject(literalObjectVar5, literalObjectVar6));
+    assert.ok(Compare.isEqualLiteralObject(literalObjectVar9, literalObjectVar0, ['list']));
+    assert.ok(Compare.isEqualLiteralObject(literalObjectVar9, literalObjectVarEx, ['list', 'extra']));
+    assert.ok(Compare.isEqualLiteralObject(literalObjectVarN1, literalObjectVarN2));
 
     assert.ok(!Compare.isEqualLiteralObject(nullVar1, nullVar2));
     assert.ok(!Compare.isEqualLiteralObject(undefinedVar1, undefinedVar2));
@@ -251,5 +260,9 @@ describe('Compare Test', () => {
     assert.ok(!Compare.isEqualLiteralObject(functionVar1, functionVar2));
     assert.ok(!Compare.isEqualLiteralObject(literalObjectVar7, literalObjectVar8));
     assert.ok(!Compare.isEqualLiteralObject(literalObjectVar9, literalObjectVar0));
+    assert.ok(!Compare.isEqualLiteralObject(literalObjectVar1, literalObjectVar2, [], false));
+    assert.ok(!Compare.isEqualLiteralObject(literalObjectVar5, literalObjectVar6, [], false));
+    assert.ok(!Compare.isEqualLiteralObject(literalObjectVar9, literalObjectVarEx, ['list']));
+    assert.ok(!Compare.isEqualLiteralObject(literalObjectVarN1, literalObjectVarN3));
   });
 });
